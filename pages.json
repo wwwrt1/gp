@@ -1,17 +1,68 @@
 {
-	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "uni-app"
-		}
-	}],
+	"pages": [
+  {
+    "path": "pages/home/home",
+    "style": {
+      "navigationBarTitleText": ""
+    }
+  },
+  {
+    "path": "pages/cate/cate",
+    "style": {
+      "navigationBarTitleText": ""
+    }
+  },
+  {
+    "path": "pages/cart/cart",
+    "style": {
+      "navigationBarTitleText": ""
+    }
+  },
+  {
+    "path": "pages/my/my",
+    "style": {
+      "navigationBarTitleText": ""
+    }
+  }
+],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTextStyle": "black",  //导航条上文本的颜色
+		"navigationBarTitleText": "购物商城",  //导航条上文本的内容
+		"navigationBarBackgroundColor": "#42b983",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
 			"background": "#efeff4"
 		}
-	}
+	},
+  
+  //配置下方导航栏
+  "tabBar": {
+    "selectedColor": "#C00000", //设置选中图标后文字的颜色
+    "list":[
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/static/tab_icons/home.png",//未选中时候的图标
+        "selectedIconPath": "/static/tab_icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/cate/cate",
+        "text": "分类",
+        "iconPath": "/static/tab_icons/cate.png",//未选中时候的图标
+        "selectedIconPath": "/static/tab_icons/cate-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/static/tab_icons/cart.png",//未选中时候的图标
+        "selectedIconPath": "/static/tab_icons/cart-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/static/tab_icons/my.png",//未选中时候的图标
+        "selectedIconPath": "/static/tab_icons/my-active.png"
+      }
+    ]
+  }
 }
