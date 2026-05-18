@@ -1,5 +1,12 @@
 <template>
- 
+  <!-- 搜索部分 -->
+  
+  <view class="search-box">
+   <my-search @click="gotoSearch"></my-search>
+  </view>
+  
+    
+ <!-- 轮播图 -->
      <view>
         <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">  
           <swiper-item v-for="(item, i) in swiperList" :key="i">
@@ -115,7 +122,13 @@
           })
         this.floorList = res.message
         // console.log(this.floorList)
-     }
+     },
+     //点击首页导航栏跳转到导航详情页
+      gotoSearch() {
+          uni.navigateTo({
+            url: '/subpkg/search/search'
+          })
+        }
      
     }
     
@@ -138,8 +151,8 @@ swiper {
    margin: 15px 0;
  
    .nav-img {
-     width: 128rpx;
-     height: 140rpx;
+     width: 60rpx;
+     height: 60rpx;
    }
    .center{
      width: 100%;
@@ -191,5 +204,14 @@ swiper {
   height: 100%;
   display: block;
   border-radius: 8rpx;
+}
+//吸顶效果，保证导航栏一直出现在上方
+.search-box {
+  // 设置定位效果为吸顶
+  position: sticky;
+  // 吸顶的位置，固定在页面的最顶部
+  top: 0;
+  // 提高层级，防止被轮播图覆盖
+  z-index: 999;
 }
 </style> 
