@@ -59,7 +59,7 @@
   
   //配置下方导航栏
   "tabBar": {
-    "selectedColor": "#C00000", //设置选中图标后文字的颜色
+    "selectedColor": "#42b983", //设置选中图标后文字的颜色
     "list":[
       {
         "pagePath": "pages/home/home",

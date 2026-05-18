@@ -114,7 +114,7 @@
             })  
           })
         this.floorList = res.message
-        console.log(this.floorList)
+        // console.log(this.floorList)
      }
      
     }
