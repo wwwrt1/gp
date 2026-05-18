@@ -3,26 +3,48 @@
   {
     "path": "pages/home/home",
     "style": {
-      "navigationBarTitleText": ""
+      "navigationBarTitleText": "购物商城"
     }
   },
   {
     "path": "pages/cate/cate",
     "style": {
-      "navigationBarTitleText": ""
+      "navigationBarTitleText": "购物商城"
     }
   },
   {
     "path": "pages/cart/cart",
     "style": {
-      "navigationBarTitleText": ""
+      "navigationBarTitleText": "购物商城"
     }
   },
   {
     "path": "pages/my/my",
     "style": {
-      "navigationBarTitleText": ""
+      "navigationBarTitleText": "购物商城"
     }
+  }
+],
+
+//定义分包，提高运行效率
+"subPackages": [
+  {
+    "root":"subpkg", //分包根目录
+    "pages": [
+      {
+        "path": "goods_detail/goods_detail",
+        "style": {
+          "navigationBarTitleText": ""
+        }
+      },
+      {
+        "path": "goods_list/goods_list",
+        "style": {
+          "navigationBarTitleText": ""
+        }
+      }
+  
+    ]
   }
 ],
 	"globalStyle": {
