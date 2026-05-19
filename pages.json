@@ -40,7 +40,10 @@
       {
         "path": "goods_list/goods_list",
         "style": {
-          "navigationBarTitleText": ""
+          "navigationBarTitleText": "",
+          "onReachBottomDistance": 150 ,//当滚动条距离页面不足150像素的时候触发上拉触底事件
+          "enablePullDownRefresh": true, //开启下拉
+          "backgroundColor": "#F8F8F8" //下拉背景色为浅灰色
         }
       },
       {

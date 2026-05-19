@@ -16,7 +16,7 @@ $http.baseUrl = 'http://127.0.0.1:4523/m1/8284752-8047894-default'
 //请求拦截器，在发起请求前需要完成的事情，loading效果
 $http.beforeRequest = function(options) {
   uni.showLoading({
-    title:'数据正在加载中，切莫着急~''
+    title:'数据正在加载中'
   })
 }
 
