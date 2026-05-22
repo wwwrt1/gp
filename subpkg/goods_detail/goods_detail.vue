@@ -24,7 +24,8 @@
       </view>
     </view>
     <!-- 运费 -->
-    <view class="yf">快递：免运费</view>
+    <!-- cart调用仓库中的数据 -->
+    <view class="yf">快递：免运费 </view>
   </view>
   <!-- 运用小程序自带的rich-text来渲染请求到的html -->
   <rich-text :nodes="goods_info.goods_introduce"></rich-text>
@@ -37,10 +38,51 @@
     <!-- buttonClick 右侧按钮的点击事件处理函数 -->
     <uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
   </view>
+  
 </template>
 
 <script>
+  import { mapState,mapMutations,mapGetters } from 'vuex'
   export default {
+    computed: {
+        // 调用 mapState 方法，把 m_cart 模块中的 cart 数组映射到当前页面中，作为计算属性来使用
+        // ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])
+        //下面就可以在页面中使用cart这个数组了
+        ...mapState('m_cart', []),
+        //映射m_cart中的的total到goods_detail中
+        ...mapGetters('m_cart', ['total']),
+        
+
+      },
+      //动态监听total值的变化为options中的的属性info重新赋值
+     // watch: {
+     //    //newVal形参得到新值
+     //    total(newVal) {
+     //      //寻找图标是购物车的按钮
+     //      const findResult = this.options.find((x) => x.text === '购物车')
+     //      // console.log(findResult)
+     //      //如果findresult值存在，则为info属性赋值
+     //      if (findResult) {
+     //        // 动态为购物车按钮的 info 属性赋值
+     //        findResult.info = newVal
+     //      }
+     //    },
+     //  },
+     //动态监听total值的变化为options中的的属性info重新赋值
+     watch: {
+        total: {
+           handler(newVal) {
+              const findResult = this.options.find(x => x.text === '购物车')
+              if (findResult) {
+                 findResult.info = newVal
+              }
+           },
+           // immediate声明在页面初始加载完毕后调用
+           immediate: true
+        }
+     },
+     
+     
     data() {
       return {
       // 商品详情对象
@@ -49,23 +91,22 @@
         goods_info: {},
         // 左侧按钮组的配置对象
         options: [{
+					icon: 'chat',
+					text: '客服'
+				},{
           icon: 'shop',
           text: '店铺'
         }, {
           icon: 'cart',
           text: '购物车',
-          info: 2
-        },
-        {
-        	icon: 'chat',
-        	text: '客服'
+          info: 0  //最终渲染为图标上的的数字
         }],
         // 右侧按钮组的配置对象
         buttonGroup: [{
             text: '加入购物车',
             backgroundColor: '#ff0000',
             color: '#fff'
-          },
+          }, 
           {
             text: '立即购买',
             backgroundColor: '#ffa200',
@@ -105,21 +146,43 @@
         })
       },
       
-      //点击加入购物车按钮后跳转到购物车页面
-      buttonClick(e) {
-        // console.log(e)
-        // console.log("e.content.text：", e.content.text);
-        if (e.content.text === '加入购物车') {
+      
+     
+      //点击购物车按钮后跳转到购物车页面
+      onClick(e) {
+        console.log(e)
+        if (e.content.text === '购物车') {
           // 切换到购物车页面
           uni.switchTab({
             url: '/pages/cart/cart'
           })
         }
+      },
+      //把m_cart模块中的方法导入当前分包中使用
+      ...mapMutations('m_cart', ['addToCart']),
+      
+      // 右侧按钮的点击事件处理函数
+      buttonClick(e) {
+         // console.log(e)
+         if (e.content.text === '加入购物车') {
+           //添加一个新的对象
+            const goods = {
+               goods_id: this.goods_info.goods_id,     
+               goods_name: this.goods_info.goods_name,  
+               goods_price: this.goods_info.goods_price, 
+               goods_count: 1,                        
+               goods_small_logo: this.goods_info.goods_small_logo, 
+               goods_state: true                        
+            }
+      
+            //调用方法放在cart中
+            this.addToCart(goods)
+      
+         }
       }
       
-    } 
   }
-  
+}
 </script>
 
 <style lang="scss">

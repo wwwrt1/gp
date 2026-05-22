@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/wwwrt1/gp#readme",
   "dependencies": {
-    "@escook/request-miniprogram": "^0.2.1"
+    "@escook/request-miniprogram": "^0.2.1",
+    "vuex": "^3.6.2"
   }
 }
